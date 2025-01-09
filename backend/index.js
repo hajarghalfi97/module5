@@ -67,26 +67,73 @@
 
 //example4 32
 
-const calculatorRoutes =
-require('./routes/calculatorRoutes');
+// const calculatorRoutes =
+// require('./routes/calculatorRoutes');
 
 
-const express = require('express')
-const app = express()
-const port = 3050
+// const express = require('express')
+// const app = express()
+// const port = 3050
 
+// app.use('/', express.static('public'))
+// // app.use('/myexamples', testRoutes);
+// app.use('/calculator', calculatorRoutes);
+
+// app.get('/', (req, res) => {
+// res.send('Hello World!')
+// })
+
+// // app.get('/users', (req, res) => {
+// //     res.send('hello friends!')
+// //     })
+
+// app.listen(port, () => {
+// console.log(`Example app listening at http://localhost:${port}`)})
+
+
+//slide 39 - dynamic params example
+
+// const userRoutes = require('./routes/userRoutes');
+// // map the user routes to our app
+// app.use('/users', userRoutes);
+
+// const express = require("express");
+// const router = express.Router();
+// const users = [
+// {id: 1, name: 'Anthony Albanese', country: 'AU'},
+// {id: 2, name: 'Joe Biden', country: 'US'},
+// {id: 3, name: 'Chris Hipkins', country: 'NZ'},
+// {id: 4, name: 'Lee Hsien Loong', country: 'SG'}
+// ]
+// // Dynamic request param endpoint - get the user matching the specific ID ie. /users/3
+// router.get('/:id', (req, res) => {
+// console.log(req.params)
+// let userId = req.params.id; // 'id' will be a value matching anything after the / in the request path
+// let user = users.find(user => user.id == userId)
+// user ? res.status(200).json({result: user})
+// : res.status(404).json({result:
+// `User ${userId} not found`})
+// })
+// module.exports = router;
+
+// lab4
+
+// const express = require("express"); // import the express package
+// const friendRoutes = require('./routes/friendRoutes');
+
+// const app = express(); // create a new app
+// const port = 3000; // change this to run the app on a different port - usually a 4 digit number
+
+// // parse requests of content-type - application/json (needed for POST and PUT requests using req.body)
+app.use(express.json());
 app.use('/', express.static('public'))
-// app.use('/myexamples', testRoutes);
-app.use('/calculator', calculatorRoutes);
+app.use('/friends', friendRoutes);
 
-app.get('/', (req, res) => {
-res.send('Hello World!')
-})
 
-// app.get('/users', (req, res) => {
-//     res.send('hello friends!')
-//     })
 
+const app = require('./app');
+const port = 3000
+// start the app to listen on the right port
 app.listen(port, () => {
-console.log(`Example app listening at http://localhost:${port}`)})
-
+console.log(`Example app listening at http://localhost:${port}`)
+})
